@@ -21,11 +21,47 @@ def webhook():
     time = data.get("time", "N/A")
 
     message = f"""
-📊 PRICE ALERT
+━━━━━━━━━━━━━━━━━━━━━━━
+🚨  AMBEM • ELITE SIGNAL
+━━━━━━━━━━━━━━━━━━━━━━━
 
-Symbol: {symbol}
-Fiyat: {price}
-Saat: {time}
+🪙 Enstrüman : {symbol}
+📊 Market    : SPOT / FUTURES
+📈 Yön       : 🔵 AL (AMBEM CONFIRMED)
+
+💰 Fiyat     : {price}
+⏱️ Zaman     : {time}
+
+━━━━━━━━━━━━━━━━━━━━━━━
+🎯 STRATEJİ
+━━━━━━━━━━━━━━━━━━━━━━━
+• Likidite süpürülmesi tamamlandı
+• Yapısal kırılım (BOS) onaylandı
+• Momentum pozitif
+
+━━━━━━━━━━━━━━━━━━━━━━━
+📍 SEVİYELER
+━━━━━━━━━━━━━━━━━━━━━━━
+🎯 TP1 : %1.5
+🎯 TP2 : %3.0
+🎯 TP3 : %5.0
+
+🛑 SL  : Son likidite altı
+
+━━━━━━━━━━━━━━━━━━━━━━━
+📊 GRAFİK
+━━━━━━━━━━━━━━━━━━━━━━━
+https://www.tradingview.com/chart/?symbol={symbol}
+
+━━━━━━━━━━━━━━━━━━━━━━━
+⚠️ RİSK UYARISI
+━━━━━━━━━━━━━━━━━━━━━━━
+Bu bir yatırım tavsiyesi değildir.
+Risk yönetimi kullanıcıya aittir.
+
+━━━━━━━━━━━━━━━━━━━━━━━
+© AMBEM ANALYTICS • ELITE DESK
+━━━━━━━━━━━━━━━━━━━━━━━
 """
 
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
