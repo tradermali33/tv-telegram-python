@@ -9,7 +9,7 @@ CHAT_ID = os.environ.get("CHAT_ID")
 
 @app.route("/webhook", methods=["POST"])
 def webhook():
-    data = request.json or {}
+    data = request.get_json(force=True)   # 🔥 KRİTİK SATIR
 
     symbol = data.get("symbol", "N/A")
     price = data.get("price", "N/A")
@@ -17,7 +17,7 @@ def webhook():
 
     message = f"""📊 PRICE ALERT
 
-Sembol: {symbol}
+Symbol: {symbol}
 Fiyat: {price}
 Saat: {time}
 """
@@ -29,6 +29,3 @@ Saat: {time}
     })
 
     return "ok", 200
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=3000)
