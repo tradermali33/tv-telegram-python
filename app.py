@@ -22,7 +22,7 @@ def webhook():
 
     message = f"""
 ━━━━━━━━━━━━━━━━━━━━━━━
-🚨  AMBEM • ELITE SIGNAL
+⚡️ TRADERMALI33 ⚡️
 ━━━━━━━━━━━━━━━━━━━━━━━
 
 🪙 Enstrüman : {symbol}
@@ -35,18 +35,15 @@ def webhook():
 ━━━━━━━━━━━━━━━━━━━━━━━
 🎯 STRATEJİ
 ━━━━━━━━━━━━━━━━━━━━━━━
-• Likidite süpürülmesi tamamlandı
-• Yapısal kırılım (BOS) onaylandı
-• Momentum pozitif
-
+ATTIĞIN ADIMA DİKKAT ET
+YOKSA BORUYU SOKARLAR 
+HABERİN OLMAZ
 ━━━━━━━━━━━━━━━━━━━━━━━
 📍 SEVİYELER
 ━━━━━━━━━━━━━━━━━━━━━━━
-🎯 TP1 : %1.5
-🎯 TP2 : %3.0
-🎯 TP3 : %5.0
-
-🛑 SL  : Son likidite altı
+🎯 TP1 : KAR CEVE YAKIŞIR
+🎯 TP2 : ÇORBA PARASI TAMAMSA KAÇ
+🎯 TP3 : KAÇTIN KAÇTIN YOKSA SIÇTIN
 
 ━━━━━━━━━━━━━━━━━━━━━━━
 📊 GRAFİK
@@ -60,7 +57,7 @@ Bu bir yatırım tavsiyesi değildir.
 Risk yönetimi kullanıcıya aittir.
 
 ━━━━━━━━━━━━━━━━━━━━━━━
-© AMBEM ANALYTICS • ELITE DESK
+© TRADERMALI33 ANALİZ SISTEMI BAŞARILAR DİLER
 ━━━━━━━━━━━━━━━━━━━━━━━
 """
 
