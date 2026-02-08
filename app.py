@@ -31,7 +31,6 @@ def webhook():
 
 💰 Fiyat     : {price}
 ⏱️ Zaman     : {time}
-
 ━━━━━━━━━━━━━━━━━━━━━━━
 🎯 STRATEJİ
 ━━━━━━━━━━━━━━━━━━━━━━━
@@ -39,23 +38,6 @@ ATTIĞIN ADIMA DİKKAT ET
 YOKSA BORUYU SOKARLAR 
 HABERİN OLMAZ
 ━━━━━━━━━━━━━━━━━━━━━━━
-📍 SEVİYELER
-━━━━━━━━━━━━━━━━━━━━━━━
-🎯 TP1 : KAR CEBE YAKIŞIR
-🎯 TP2 : ÇORBA PARASI TAMAMSA KAÇ
-🎯 TP3 : KAÇTIN KAÇTIN YOKSA SIÇTIN
-
-━━━━━━━━━━━━━━━━━━━━━━━
-📊 GRAFİK
-━━━━━━━━━━━━━━━━━━━━━━━
-https://www.tradingview.com/chart/?symbol={symbol}
-
-━━━━━━━━━━━━━━━━━━━━━━━
-⚠️ RİSK UYARISI
-━━━━━━━━━━━━━━━━━━━━━━━
-Bu bir yatırım tavsiyesi değildir.
-Risk yönetimi kullanıcıya aittir.
-
 ━━━━━━━━━━━━━━━━━━━━━━━
 © TRADERMALI33 ANALİZ SISTEMI BAŞARILAR DİLER
 ━━━━━━━━━━━━━━━━━━━━━━━
