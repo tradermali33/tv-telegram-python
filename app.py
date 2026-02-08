@@ -41,7 +41,7 @@ HABERİN OLMAZ
 ━━━━━━━━━━━━━━━━━━━━━━━
 📍 SEVİYELER
 ━━━━━━━━━━━━━━━━━━━━━━━
-🎯 TP1 : KAR CEVE YAKIŞIR
+🎯 TP1 : KAR CEBE YAKIŞIR
 🎯 TP2 : ÇORBA PARASI TAMAMSA KAÇ
 🎯 TP3 : KAÇTIN KAÇTIN YOKSA SIÇTIN
 
