@@ -1,6 +1,5 @@
 from flask import Flask, request, jsonify
 import telegram
-from datetime import datetime
 
 app = Flask(__name__)
 
@@ -8,7 +7,7 @@ app = Flask(__name__)
 #    ⚡️tradermali33⚡️ - Mehmet Ali YILMAZ
 # ────────────────────────────────────────────────
 TELEGRAM_TOKEN = "8563082124:AAFkDJmM4x_FzXMZvvR13T7y9DqYI___a2E"   # BotFather'dan aldığın token
-CHAT_ID = "-1003790106737"                                     # Grup veya kişisel chat ID
+CHAT_ID = "-1003790106737"                                     # Grup veya kişisel chat ID'n
 
 bot = telegram.Bot(token=TELEGRAM_TOKEN)
 
