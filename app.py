@@ -1,4 +1,16 @@
-# ... (önceki flask ve telegram importları aynı kalıyor)
+from flask import Flask, request, jsonify
+import telegram
+from datetime import datetime
+
+app = Flask(__name__)
+
+# ────────────────────────────────────────────────
+#    ⚡️tradermali33⚡️ - Mehmet Ali YILMAZ
+# ────────────────────────────────────────────────
+TELEGRAM_TOKEN = "8563082124:AAFkDJmM4x_FzXMZvvR13T7y9DqYI___a2E"   # BotFather'dan aldığın token
+CHAT_ID = "-1003790106737"                                     # Grup veya kişisel chat ID
+
+bot = telegram.Bot(token=TELEGRAM_TOKEN)
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
@@ -55,3 +67,7 @@ def webhook():
     except Exception as e:
         print("Hata:", str(e))
         return jsonify({"error": str(e)}), 500
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
