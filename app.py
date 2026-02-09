@@ -1,57 +1,57 @@
-from flask import Flask, request
-import requests
-import os
+# ... (önceki flask ve telegram importları aynı kalıyor)
 
-app = Flask(__name__)
-
-BOT_TOKEN = os.environ.get("BOT_TOKEN")
-CHAT_ID = os.environ.get("CHAT_ID")
-
-@app.route("/", methods=["GET"])
-def home():
-    return "Bot is running", 200
-
-
-@app.route("/webhook", methods=["POST"])
+@app.route('/webhook', methods=['POST'])
 def webhook():
-    data = request.get_json(force=True)
+    try:
+        data = request.get_json() or {}
+        
+        alert_type = data.get('type', 'BILINMEYEN').upper()
+        symbol    = data.get('symbol', '—')
+        price     = data.get('price', '—')
+        tf        = data.get('tf', '1m')
+        time_str  = data.get('time', '—')
+        emoji     = data.get('emoji', '⚠️')
 
-    symbol = data.get("symbol", "N/A")
-    price = data.get("price", "N/A")
-    time = data.get("time", "N/A")
+        # Her sinyal türüne özel başlık ve açıklama
+        messages = {
+            "BOS_BULL":     ("🟢 BOS",          "Yükseliş Yapı Kırılımı"),
+            "BOS_BEAR":     ("🔴 BOS",          "Düşüş Yapı Kırılımı"),
+            "CHOCH_BULL":   ("🟢 CHoCH",        "Yükseliş Karakter Değişimi"),
+            "CHOCH_BEAR":   ("🔴 CHoCH",        "Düşüş Karakter Değişimi"),
+            "IBOS_BULL":    ("🟢 iBOS",         "İç Yapı - Yükseliş Kırılım"),
+            "IBOS_BEAR":    ("🔴 iBOS",         "İç Yapı - Düşüş Kırılım"),
+            "ICHOCH_BULL":  ("🟢 iCHoCH",       "İç Yapı - Yükseliş Değişim"),
+            "ICHOCH_BEAR":  ("🔴 iCHoCH",       "İç Yapı - Düşüş Değişim"),
+            "OB_BULL":      ("🟩 OB",           "Yeni Yükseliş Order Block"),
+            "OB_BEAR":      ("🟥 OB",           "Yeni Düşüş Order Block"),
+            "EQH":          ("📌 EQH",          "Equal Highs - Üst Likidite"),
+            "EQL":          ("📍 EQL",          "Equal Lows - Alt Likidite"),
+            "FVG_BULL":     ("🟩 FVG",          "Bullish Fair Value Gap"),
+            "FVG_BEAR":     ("🟥 FVG",          "Bearish Fair Value Gap"),
+        }
 
-    message = f"""
-━━━━━━━━━━━━━━━━━━━━━━━
-⚡️ TRADERMALI33 ⚡️
-━━━━━━━━━━━━━━━━━━━━━━━
+        title, desc = messages.get(alert_type, ("⚠️ BİLİNMEYEN", "Tanımlanamayan sinyal"))
 
-🪙 Enstrüman : {symbol}
-📊 Market    : SPOT / FUTURES
-📈 Yön       : 🔵 AL (AMBEM CONFIRMED)
+        message = (
+            f"{emoji} <b>{title}</b>\n"
+            f"────────────────────\n"
+            f"• Sembol: <b>{symbol}</b>\n"
+            f"• Fiyat: <b>{price}</b>\n"
+            f"• Zaman: {time_str}\n"
+            f"• Açıklama: {desc}\n"
+            "────────────────────\n"
+            f"<i>1m zaman dilimi - LuxAlgo SMC</i>"
+        )
 
-💰 Fiyat     : {price}
-⏱️ Zaman     : {time}
-━━━━━━━━━━━━━━━━━━━━━━━
-🎯 STRATEJİ
-━━━━━━━━━━━━━━━━━━━━━━━
-ATTIĞIN ADIMA DİKKAT ET
-YOKSA BORUYU SOKARLAR 
-HABERİN OLMAZ
-━━━━━━━━━━━━━━━━━━━━━━━
-━━━━━━━━━━━━━━━━━━━━━━━
-© TRADERMALI33 ANALİZ SISTEMI BAŞARILAR DİLER
-━━━━━━━━━━━━━━━━━━━━━━━
-"""
+        bot.send_message(
+            chat_id=CHAT_ID,
+            text=message,
+            parse_mode='HTML',
+            disable_notification=False
+        )
 
-    url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
-    payload = {
-        "chat_id": CHAT_ID,
-        "text": message
-    }
+        return jsonify({"status": "gönderildi"}), 200
 
-    requests.post(url, json=payload)
-    return "ok", 200
-
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=3000)
+    except Exception as e:
+        print("Hata:", str(e))
+        return jsonify({"error": str(e)}), 500
