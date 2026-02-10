@@ -1,3 +1,19 @@
+from flask import Flask, request, jsonify
+import telegram
+import os
+import asyncio  # await için gerekli
+
+# Ortam değişkenlerini oku
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
+CHAT_ID = os.getenv("CHAT_ID")
+
+if not TELEGRAM_TOKEN or not CHAT_ID:
+    print("HATA: TELEGRAM_TOKEN veya CHAT_ID eksik!")
+
+bot = telegram.Bot(token=TELEGRAM_TOKEN)
+
+app = Flask(__name__)  # ← BU SATIR ÇOK ÖNEMLİ – burada tanımlanmalı!
+
 @app.route('/webhook', methods=['POST'])
 async def webhook():
     try:
@@ -52,3 +68,7 @@ async def webhook():
     except Exception as e:
         print("Hata:", str(e))
         return jsonify({"error": str(e)}), 500
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
