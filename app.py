@@ -1,18 +1,5 @@
-from flask import Flask, request, jsonify
-import telegram
-
-app = Flask(__name__)
-
-# ────────────────────────────────────────────────
-#    ⚡️tradermali33⚡️ - Mehmet Ali YILMAZ
-# ────────────────────────────────────────────────
-TELEGRAM_TOKEN = "8563082124:AAFkDJmM4x_FzXMZvvR13T7y9DqYI___a2E"   # BotFather'dan aldığın token
-CHAT_ID = "-1003790106737"                                     # Grup veya kişisel chat ID'n
-
-bot = telegram.Bot(token=TELEGRAM_TOKEN)
-
 @app.route('/webhook', methods=['POST'])
-def webhook():
+async def webhook():
     try:
         data = request.get_json() or {}
         
@@ -23,7 +10,6 @@ def webhook():
         time_str  = data.get('time', '—')
         emoji     = data.get('emoji', '⚠️')
 
-        # Her sinyal türüne özel başlık ve açıklama
         messages = {
             "BOS_BULL":     ("🟢 BOS",          "Yükseliş Yapı Kırılımı"),
             "BOS_BEAR":     ("🔴 BOS",          "Düşüş Yapı Kırılımı"),
@@ -54,7 +40,7 @@ def webhook():
             f"<i>1m zaman dilimi - LuxAlgo SMC</i>"
         )
 
-        bot.send_message(
+        await bot.send_message(
             chat_id=CHAT_ID,
             text=message,
             parse_mode='HTML',
@@ -66,7 +52,3 @@ def webhook():
     except Exception as e:
         print("Hata:", str(e))
         return jsonify({"error": str(e)}), 500
-
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
